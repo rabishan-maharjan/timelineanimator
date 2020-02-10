@@ -1,0 +1,16 @@
+*.csproj
+*.sln
+*.userprefs
+Build/
+Library/
+obj/
+Temp/
+QCAR/
+.vscode/
+.vs/
+Assets/ExampleAssets/
+Assets/TutorialInfo/
+Assets/ExampleAssets.meta
+Assets/TutorialInfo.meta
+Assets/HONETi/mobile_cartoon_GUI/psd files/
+Assets/HONETi/mobile_cartoon_GUI/psd files.meta
