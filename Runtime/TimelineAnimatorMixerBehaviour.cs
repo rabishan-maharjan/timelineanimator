@@ -34,13 +34,13 @@ namespace Arcube.TimelineAnimator {
                     input.target.GetComponent<TMP_Text>().UpdateText(progress);
                     break;
                 case Tween.Move:
-                    input.target.GetComponent<RectTransform>().UpdateMove(new Vector2(value.x, value.y));
+                    input.target.GetComponent<RectTransform>().SetPosition(new Vector2(value.x, value.y));
                     break;
                 case Tween.Scale:
-                    input.target.transform.UpdateScale(value);
+                    input.target.transform.SetScale(value);
                     break;
                 case Tween.Fade:
-                    input.target.GetComponent<Image>().UpdateFade(value.x);
+                    input.target.GetComponent<Image>().SetFade(value.x);
                     break;
             }
         }
