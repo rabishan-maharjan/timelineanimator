@@ -1,9 +1,9 @@
 ﻿namespace Arcube.TimelineAnimator {
     public enum Tween {
-        Text,
-        Fade,
         Move,
+        Fade,
         Scale,
         Color,
+        Text,
     }
 }
