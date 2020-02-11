@@ -1,12 +1,12 @@
 {
   "name": "com.arcube.timelineanimator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Timeline Animator",
   "description": "Use this for adding animations in timeline",
   "unity": "2019.1",
   "dependencies": {
     "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.0.1"
+    "com.unity.timeline": "1.0.0"
   },
   "keywords": [
     "tools",
