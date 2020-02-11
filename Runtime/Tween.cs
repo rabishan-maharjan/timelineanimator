@@ -4,5 +4,6 @@
         Fade,
         Move,
         Scale,
+        Color,
     }
 }
