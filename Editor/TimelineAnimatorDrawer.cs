@@ -2,7 +2,6 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Timeline;
-using UnityEngine.UI;
 
 namespace Arcube.TimelineAnimator {
     [CustomPropertyDrawer(typeof(TimelineAnimatorBehaviour))]
@@ -17,29 +16,13 @@ namespace Arcube.TimelineAnimator {
             SerializedProperty curve = property.FindPropertyRelative("curve");
             SerializedProperty from = property.FindPropertyRelative("from");
             SerializedProperty to = property.FindPropertyRelative("to");
-            SerializedProperty tweenType = property.FindPropertyRelative("tweenType");
-
-            //SerializedProperty start = property.FindPropertyRelative("start");
-            //SerializedProperty end = property.FindPropertyRelative("end");
-            //SerializedProperty duration = property.FindPropertyRelative("duration");
+            SerializedProperty type = property.FindPropertyRelative("type");
 
             Rect singleFieldRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             EditorGUILayout.PropertyField(curve);
             EditorGUILayout.PropertyField(from);
             EditorGUILayout.PropertyField(to);
-            EditorGUILayout.PropertyField(tweenType);
-
-            //EditorGUILayout.FloatField("Start", start.floatValue);
-            //EditorGUILayout.FloatField("End", end.floatValue);
-            //EditorGUILayout.FloatField("Duration", duration.floatValue);
-
-            if (GUILayout.Button("Set From")) {
-                from.vector3Value = GetValue(GetObject(), tweenType.enumValueIndex);
-            }
-
-            if (GUILayout.Button("Set To")) {
-                to.vector3Value = GetValue(GetObject(), tweenType.enumValueIndex);
-            }
+            EditorGUILayout.PropertyField(type);
         }
 
         public static GameObject GetObject() {
@@ -56,29 +39,6 @@ namespace Arcube.TimelineAnimator {
             }
 
             return gameObject;
-        }
-
-        public static Vector3 GetValue(GameObject obj, int tweenType) {
-            if (obj == null) tweenType = 99;
-            switch ((Tween)tweenType) {
-                case Tween.Color:
-                    if (obj.TryGetComponent(out Image image)) {
-                        return new Vector3(image.color.r, image.color.g, image.color.b);
-                    } else if(obj.TryGetComponent(out TMPro.TMP_Text text)) {
-                        return new Vector3(text.color.r, text.color.g, text.color.b);
-                    }
-                    return Vector3.zero;
-                case Tween.Scale:
-                    return obj.transform.localScale;
-                case Tween.Move:
-                    if (obj.TryGetComponent(out RectTransform rect)) {
-                        return new Vector3(rect.position.x, rect.position.y, 0);
-                    }
-                    return obj.transform.localPosition;
-                default:
-                    Debug.LogError("Timeline animator value set wrong!");
-                    return Vector3.zero;
-            }
         }
     }
 }

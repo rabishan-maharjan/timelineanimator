@@ -6,11 +6,11 @@ namespace Arcube.TimelineAnimator {
     [Serializable]
     public class TimelineAnimatorBehaviour : PlayableBehaviour {
         public GameObject target;
-        public Vector3 from;
-        public Vector3 to;
+        public int from = 0;
+        public int to = 1;
         public AnimationCurve curve;
         public float duration;
-        public Tween tweenType;
+        public string type;
         public double start;
         public double end;
     }
