@@ -11,7 +11,7 @@ namespace Arcube.TimelineAnimator {
             } else if (transform.TryGetComponent(out TMPro.TMP_Text text)) {
                 text.color = c;
             }else if (transform.TryGetComponent(out Renderer renderer)) {
-                renderer.material.color = c;
+                renderer.material.SetColor("_BaseColor", c);
             }
         }
     }
