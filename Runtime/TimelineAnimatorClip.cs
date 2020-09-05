@@ -8,8 +8,7 @@ namespace Arcube.TimelineAnimator {
     public class TimelineAnimatorClip : PlayableAsset, ITimelineClipAsset {
         public TimelineAnimatorBehaviour template = new TimelineAnimatorBehaviour();
         public ExposedReference<GameObject> target;
-        [HideInInspector]
-        public GameObject _targetReference;
+        [HideInInspector] public GameObject _targetReference;
 
         public ClipCaps clipCaps {
             get { return ClipCaps.Looping | ClipCaps.Extrapolation | ClipCaps.SpeedMultiplier | ClipCaps.Blending; }
