@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Arcube.TimelineAnimator {
+    [AddComponentMenu("TimelineEditor/PathJump")]
     public class PathJump : MonoBehaviour, IAnimatable {
         [ReorderableList] [SerializeField] Transform []points;
         [SerializeField] float jumpMaxPosition = 0;

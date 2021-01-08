@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 
 namespace Arcube.TimelineAnimator {
+    [AddComponentMenu("TimelineEditor/Rotate")]
     public class Rotate : MonoBehaviour, IAnimatable {
         [ReorderableList] [SerializeField] List<Vector3> points = new List<Vector3>();
 

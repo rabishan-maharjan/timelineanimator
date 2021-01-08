@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Arcube.TimelineAnimator {
+    [AddComponentMenu("TimelineEditor/PathMove")]
     public class PathMove : MonoBehaviour, IAnimatable {
         [ReorderableList] [SerializeField] Transform []points;
         public void Animate(float progress, int from, int to) {

@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Arcube.TimelineAnimator {
+    [AddComponentMenu("TimelineEditor/ColorChange")]
     public class ColorChange : MonoBehaviour, IAnimatable {
         [ReorderableList] [SerializeField] Color[] points;
         public void Animate(float progress, int from, int to) {
@@ -12,6 +13,8 @@ namespace Arcube.TimelineAnimator {
                 text.color = c;
             }else if (transform.TryGetComponent(out Renderer renderer)) {
                 renderer.material.SetColor("_BaseColor", c);
+            }else if(transform.TryGetComponent(out CanvasGroup group)) {
+                group.alpha = c.a;
             }
         }
     }

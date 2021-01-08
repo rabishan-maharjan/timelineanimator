@@ -13,5 +13,6 @@ namespace Arcube.TimelineAnimator {
         public string type;
         public double start;
         public double end;
+        public float clipLength;
     }
 }
