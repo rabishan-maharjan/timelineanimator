@@ -14,5 +14,7 @@ namespace Arcube.TimelineAnimator {
         public double start;
         public double end;
         public float clipLength;
+
+        public bool targetChildren = false;
     }
 }
