@@ -9,7 +9,7 @@ namespace Arcube.TimelineAnimator {
             
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to) {
+        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true) {
             float curveProgress = curve.Evaluate(progress);
                 
             Vector3 value = transform.position;

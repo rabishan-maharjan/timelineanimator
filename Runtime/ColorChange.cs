@@ -17,15 +17,17 @@ namespace Arcube.TimelineAnimator {
             }
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to) {
+        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true) {
             float delta = 1f / transform.childCount;
             foreach (Transform t in transform) {
                 int child = t.GetSiblingIndex();
+                if (!ascendingOrder) child = transform.childCount - child - 1;
+
                 float childProgress = (progress - (delta * child)) / delta;
                 childProgress = Mathf.Clamp(childProgress, 0, 1);
                 float curveProgress = curve.Evaluate(childProgress);
-
                 Color c = Color.Lerp(points[from], points[to], curveProgress);
+
                 if (t.TryGetComponent(out UnityEngine.UI.Image image)) {
                     image.color = c;
                 } else if (t.TryGetComponent(out TMPro.TMP_Text text)) {

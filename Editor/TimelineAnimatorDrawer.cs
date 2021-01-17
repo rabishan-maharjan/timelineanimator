@@ -18,13 +18,14 @@ namespace Arcube.TimelineAnimator {
             SerializedProperty to = property.FindPropertyRelative("to");
             SerializedProperty type = property.FindPropertyRelative("type");
             SerializedProperty targetChildren = property.FindPropertyRelative("targetChildren");
+            SerializedProperty ascendingOrder = property.FindPropertyRelative("ascendingOrder");
 
-            Rect singleFieldRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             EditorGUILayout.PropertyField(curve);
             EditorGUILayout.PropertyField(from);
             EditorGUILayout.PropertyField(to);
             EditorGUILayout.PropertyField(type);
             EditorGUILayout.PropertyField(targetChildren);
+            if(targetChildren.boolValue) EditorGUILayout.PropertyField(ascendingOrder);
         }
 
         public static GameObject GetObject() {

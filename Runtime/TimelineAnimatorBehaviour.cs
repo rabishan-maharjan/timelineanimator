@@ -16,5 +16,6 @@ namespace Arcube.TimelineAnimator {
         public float clipLength;
 
         public bool targetChildren = false;
+        public bool ascendingOrder = true;
     }
 }
