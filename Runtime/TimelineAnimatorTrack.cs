@@ -14,6 +14,8 @@ namespace Arcube.TimelineAnimator {
                     myAsset.template.start = clip.start;
                     myAsset.template.end = clip.end;
                 }
+
+                clip.displayName = myAsset.target.Resolve(graph.GetResolver()).name; //update name based on target object
             }
 
             return ScriptPlayable<TimelineAnimatorMixerBehaviour>.Create(graph, inputCount);

@@ -17,7 +17,7 @@ namespace Arcube.TimelineAnimator {
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner) {
             var playable = ScriptPlayable<TimelineAnimatorBehaviour>.Create(graph, template);
             TimelineAnimatorBehaviour clone = playable.GetBehaviour();
-            clone.target = target.Resolve(graph.GetResolver());
+            clone.target = target.Resolve(graph.GetResolver());            
             _targetReference = clone.target;
             return playable;
         }
