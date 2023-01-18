@@ -4,17 +4,17 @@ using System.Collections.Generic;
 namespace Arcube.TimelineAnimator
 {
     [AddComponentMenu("TimelineEditor/Scale")]
-    public class Scale : MonoBehaviour, IAnimatable
+    public class Scale : Animatable
     {
         [SerializeField] private List<Vector3> points = new List<Vector3>();
         public void AddPoint() => points.Add(transform.localScale);
-        public void Animate(float progress, int from, int to)
+        public override void Animate(float progress, int from, int to)
         {
             var deltaScale = points[to] - points[from];
             transform.localScale = points[from] + (deltaScale * progress);
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        public override void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
         {
             var delta = 1f / transform.childCount;
             foreach (Transform t in transform)

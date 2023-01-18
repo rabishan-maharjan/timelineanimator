@@ -4,17 +4,17 @@ using System.Collections.Generic;
 namespace Arcube.TimelineAnimator
 {
     [AddComponentMenu("TimelineEditor/Rotate")]
-    public class Rotate : MonoBehaviour, IAnimatable
+    public class Rotate : Animatable
     {
         [SerializeField] private List<Vector3> points = new List<Vector3>();
         public void AddPoint() => points.Add(transform.localEulerAngles);
-        public void Animate(float progress, int from, int to)
+        public override void Animate(float progress, int from, int to)
         {
             var deltaRotation = points[to] - points[from];
             transform.localEulerAngles = points[from] + (deltaRotation * progress);
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        public override void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
         {
             var delta = 1f / transform.childCount;
             foreach (Transform t in transform)

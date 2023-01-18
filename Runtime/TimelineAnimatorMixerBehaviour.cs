@@ -26,7 +26,7 @@ namespace Arcube.TimelineAnimator
 
         private void Animate(TimelineAnimatorBehaviour input, float progress)
         {
-            if (input.target.GetComponent(input.scriptType) is IAnimatable animatable)
+            if (input.target.TryGetComponent(out IAnimatable animatable))
             {
                 if (input.targetChildren)
                 {

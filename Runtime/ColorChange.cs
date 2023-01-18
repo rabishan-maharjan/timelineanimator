@@ -5,10 +5,10 @@ using UnityEngine.UI;
 namespace Arcube.TimelineAnimator
 {
     [AddComponentMenu("TimelineEditor/ColorChange")]
-    public class ColorChange : MonoBehaviour, IAnimatable
+    public class ColorChange : Animatable
     {
         [SerializeField] Color[] points;
-        public void Animate(float progress, int from, int to)
+        public override void Animate(float progress, int from, int to)
         {
             var c = Color.Lerp(points[from], points[to], progress);
             if (transform.TryGetComponent(out Image image))
@@ -29,7 +29,7 @@ namespace Arcube.TimelineAnimator
             }
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        public override void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
         {
             float delta = 1f / transform.childCount;
             foreach (Transform t in transform)

@@ -1,4 +1,6 @@
-Version 1.1.0
+Version 1.1.2
+removed support for multiple animatable on same object
+Version 1.1.1
 fixed point move and path move to shoot beyond from and to value
 added rect transform move on point move
 Version 1.1.0

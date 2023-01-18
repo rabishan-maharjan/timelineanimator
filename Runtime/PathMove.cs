@@ -3,17 +3,17 @@
 namespace Arcube.TimelineAnimator
 {
     [AddComponentMenu("TimelineEditor/PathMove")]
-    public class PathMove : MonoBehaviour, IAnimatable
+    public class PathMove : Animatable
     {
         [SerializeField] private Transform[] points;
-        public void Animate(float progress, int from, int to)
+        public override void Animate(float progress, int from, int to)
         {
             var deltaPos = points[to].position - points[from].position;
             var pos = points[from].position + (deltaPos * progress);
             transform.SetPosition(pos);
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        public override void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
         {
             var delta = 1f / transform.childCount;
             foreach (Transform t in transform)

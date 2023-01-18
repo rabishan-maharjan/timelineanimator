@@ -10,7 +10,6 @@ namespace Arcube.TimelineAnimator {
         public int to = 1;
         public AnimationCurve curve;
         public float duration;
-        public string scriptType;
         public double start;
         public double end;
         public float clipLength;

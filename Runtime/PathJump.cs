@@ -1,28 +1,33 @@
 ﻿using UnityEngine;
 
-namespace Arcube.TimelineAnimator {
+namespace Arcube.TimelineAnimator
+{
     [AddComponentMenu("TimelineEditor/PathJump")]
-    public class PathJump : MonoBehaviour, IAnimatable {
-        [SerializeField] Transform []points;
-        [SerializeField] float jumpMaxPosition = 0;
+    public class PathJump : Animatable
+    {
+        [SerializeField] private Transform[] points;
+        [SerializeField] private float jumpMaxPosition = 0;
 
-        public void Animate(float progress, int from, int to) {
-            Vector3 pos = Vector3.Lerp(points[from].position, points[to].position, progress);
+        public override void Animate(float progress, int from, int to)
+        {
+            var pos = Vector3.Lerp(points[from].position, points[to].position, progress);
             pos.y += Mathf.Sin(progress * Mathf.PI) * jumpMaxPosition;
             transform.SetPosition(pos);
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true) {
-            float delta = 1f / transform.childCount;
-            foreach (Transform t in transform) {
-                int child = t.GetSiblingIndex();
+        public override void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        {
+            var delta = 1f / transform.childCount;
+            foreach (Transform t in transform)
+            {
+                var child = t.GetSiblingIndex();
                 if (!ascendingOrder) child = transform.childCount - child - 1;
 
-                float childProgress = (progress - (delta * child)) / delta;
+                var childProgress = (progress - (delta * child)) / delta;
                 childProgress = Mathf.Clamp(childProgress, 0, 1);
-                float curveProgress = curve.Evaluate(childProgress);
+                var curveProgress = curve.Evaluate(childProgress);
 
-                Vector3 value = Vector3.Lerp(points[from].position, points[to].position, curveProgress);
+                var value = Vector3.Lerp(points[from].position, points[to].position, curveProgress);
                 t.SetPositionLocal(value);
             }
         }
