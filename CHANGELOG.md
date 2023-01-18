@@ -1,3 +1,6 @@
+Version 1.1.0
+added dropdown to select animation script
+can shoot beyond 1 and 0 value
 Version 1.0.10
 added recttransform on curvemove
 Version 1.0.7
