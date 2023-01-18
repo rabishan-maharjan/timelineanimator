@@ -1,26 +1,32 @@
 ﻿using UnityEngine;
 
-namespace Arcube.TimelineAnimator {
+namespace Arcube.TimelineAnimator
+{
     [AddComponentMenu("TimelineEditor/PathMove")]
-    public class PathMove : MonoBehaviour, IAnimatable {
-        [SerializeField] Transform []points;
-        public void Animate(float progress, int from, int to) {
-            Vector3 pos = Vector3.Lerp(points[from].position, points[to].position, progress);
+    public class PathMove : MonoBehaviour, IAnimatable
+    {
+        [SerializeField] private Transform[] points;
+        public void Animate(float progress, int from, int to)
+        {
+            var deltaPos = points[to].position - points[from].position;
+            var pos = points[from].position + (deltaPos * progress);
             transform.SetPosition(pos);
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true) {
-            float delta = 1f / transform.childCount;
-            foreach (Transform t in transform) {
-                int child = t.GetSiblingIndex();
+        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        {
+            var delta = 1f / transform.childCount;
+            foreach (Transform t in transform)
+            {
+                var child = t.GetSiblingIndex();
                 if (!ascendingOrder) child = transform.childCount - child - 1;
 
-                float childProgress = (progress - (delta * child)) / delta;
+                var childProgress = (progress - (delta * child)) / delta;
                 childProgress = Mathf.Clamp(childProgress, 0, 1);
-                float curveProgress = curve.Evaluate(childProgress);
-
-                Vector3 value = Vector3.Lerp(points[from].position, points[to].position, curveProgress);
-                t.SetPositionLocal(value);
+                var curveProgress = curve.Evaluate(childProgress);
+                var deltaPos = points[to].position - points[from].position;
+                var pos = points[from].position + (deltaPos * curveProgress);
+                t.SetPosition(pos);
             }
         }
     }

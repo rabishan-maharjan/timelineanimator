@@ -1,6 +1,9 @@
 Version 1.1.0
+fixed point move and path move to shoot beyond from and to value
+added rect transform move on point move
+Version 1.1.0
 added dropdown to select animation script
-can shoot beyond 1 and 0 value
+can shoot beyond from and to value
 Version 1.0.10
 added recttransform on curvemove
 Version 1.0.7

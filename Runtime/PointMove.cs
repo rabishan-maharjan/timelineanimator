@@ -1,28 +1,48 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace Arcube.TimelineAnimator {
+namespace Arcube.TimelineAnimator
+{
     [AddComponentMenu("TimelineEditor/PointMove")]
-    public class PointMove : MonoBehaviour, IAnimatable {
-        [SerializeField] List<Vector3> points;
+    public class PointMove : MonoBehaviour, IAnimatable
+    {
+        [SerializeField] private List<Vector3> points;
         public void AddPoint() => points.Add(transform.localPosition);
-        public void Animate(float progress, int from, int to) {
-            Vector3 pos = Vector3.Lerp(points[from], points[to], progress);
-            transform.SetPositionLocal(pos);
+        public void Animate(float progress, int from, int to)
+        {
+            var deltaPos = points[to] - points[from];
+            var pos = points[from] + (deltaPos * progress);
+            if (transform.TryGetComponent(out RectTransform rt))
+            {
+                rt.SetPosition(new Vector2(pos.x, pos.y));
+            }
+            else
+            {
+                transform.SetPositionLocal(pos);
+            }
         }
 
-        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true) {
-            float delta = 1f / transform.childCount;
-            foreach (Transform t in transform) {
-                int child = t.GetSiblingIndex();
+        public void AnimateChildren(float progress, AnimationCurve curve, int from, int to, bool ascendingOrder = true)
+        {
+            var delta = 1f / transform.childCount;
+            foreach (Transform t in transform)
+            {
+                var child = t.GetSiblingIndex();
                 if (!ascendingOrder) child = transform.childCount - child - 1;
 
-                float childProgress = (progress - (delta * child)) / delta;
+                var childProgress = (progress - (delta * child)) / delta;
                 childProgress = Mathf.Clamp(childProgress, 0, 1);
-                float curveProgress = curve.Evaluate(childProgress);
-
-                Vector3 value = Vector3.Lerp(points[from], points[to], curveProgress);
-                t.SetPositionLocal(value);
+                var curveProgress = curve.Evaluate(childProgress);
+                var deltaPos = points[to] - points[from];
+                var pos = points[from] + (deltaPos * curveProgress);
+                if (t.TryGetComponent(out RectTransform rt))
+                {
+                    rt.SetPosition(new Vector2(pos.x, pos.y));
+                }
+                else
+                {
+                    t.SetPositionLocal(pos);
+                }
             }
         }
     }
