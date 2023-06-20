@@ -1,9 +1,9 @@
 {
   "name": "com.arcube.timelineanimator",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "displayName": "Timeline Animator",
   "description": "Use this as assistance form unity timeline editor",
-  "unity": "2019.1",
+  "unity": "2021.3",
   
   "dependencies": 
   {
