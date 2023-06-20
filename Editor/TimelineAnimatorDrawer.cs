@@ -14,6 +14,7 @@ namespace Arcube.TimelineAnimator
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var target = property.FindPropertyRelative("target");
+            var script = property.FindPropertyRelative("script");
             var curve = property.FindPropertyRelative("curve");
             var from = property.FindPropertyRelative("from");
             var to = property.FindPropertyRelative("to");
@@ -21,6 +22,7 @@ namespace Arcube.TimelineAnimator
             var ascendingOrder = property.FindPropertyRelative("ascendingOrder");
 
             //scriptType.enumValueIndex = (int)(AnimationTypes)EditorGUI.EnumPopup(position, "scriptType", (AnimationTypes)scriptType.intValue);
+            EditorGUILayout.PropertyField(script);
             EditorGUILayout.PropertyField(curve);
             EditorGUILayout.PropertyField(from);
             EditorGUILayout.PropertyField(to);

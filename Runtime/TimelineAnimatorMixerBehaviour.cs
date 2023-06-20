@@ -26,7 +26,22 @@ namespace Arcube.TimelineAnimator
 
         private void Animate(TimelineAnimatorBehaviour input, float progress)
         {
-            if (input.target.TryGetComponent(out IAnimatable animatable))
+            if (!string.IsNullOrEmpty(input.script))
+            {
+                if (input.target.GetComponent(input.script) is IAnimatable selectedAnimatable)
+                {
+                    if (input.targetChildren)
+                    {
+                        selectedAnimatable.AnimateChildren(progress, input.curve, input.from, input.to, input.ascendingOrder);
+                    }
+                    else
+                    {
+                        var curveProgress = input.curve.Evaluate(progress);
+                        selectedAnimatable.Animate(curveProgress, input.from, input.to);
+                    }
+                }
+            }
+            else if (input.target.TryGetComponent(out IAnimatable animatable))
             {
                 if (input.targetChildren)
                 {
