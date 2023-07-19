@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
 public abstract class Animatable : MonoBehaviour, IAnimatable
 {
     public abstract void Animate(float progress, int from, int to);

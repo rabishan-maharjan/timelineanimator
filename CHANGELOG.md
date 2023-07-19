@@ -1,5 +1,7 @@
+Version 1.1.4
+allowed multiple components
 Version 1.1.3
-re added script selection
+added script selection
 added more tweens
 Version 1.1.2
 removed support for multiple animatable on same object
