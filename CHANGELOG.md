@@ -1,3 +1,5 @@
+Version 1.1.5
+removed textmeshpro dependancy
 Version 1.1.4
 allowed multiple components
 Version 1.1.3

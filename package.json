@@ -1,17 +1,16 @@
 {
   "name": "com.arcube.timelineanimator",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "displayName": "Timeline Animator",
   "description": "Use this as assistance form unity timeline editor",
   "unity": "2021.3",
   
   "dependencies": 
   {
-    "com.unity.textmeshpro": "3.0.3",
     "com.unity.timeline": "1.4.5"
   },
-  "keywords": 
   
+  "keywords":   
   [
     "tools",
     "timeline",
@@ -21,7 +20,7 @@
   "author": 
   {
     "name": "Arcube Games & Animation",
-    "email": "arcubegames@gmail.com",
+    "email": "arcubegames.projects@gmail.com",
     "url": "http://www.arcube.com.np"
   }
 }
